@@ -57,7 +57,7 @@ const App = props => {
       setUser(user);
       setProducts(products.data);
     })()
-  }, [])
+  }, []);
 
   return (<Context.Provider value={{
     user,
