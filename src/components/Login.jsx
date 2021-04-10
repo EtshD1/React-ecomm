@@ -29,7 +29,7 @@ const Login = ({ context }) => {
       })
   };
 
-  return context.user ? (
+  return !context.user ? (
     <>
       <div className="hero is-primary ">
         <div className="hero-body container">
@@ -38,7 +38,7 @@ const Login = ({ context }) => {
       </div>
       <br />
       <br />
-      <form onSubmit={this.login}>
+      <form onSubmit={login}>
         <div className="columns is-mobile is-centered">
           <div className="column is-one-third">
             <div className="field">
@@ -47,7 +47,7 @@ const Login = ({ context }) => {
                 className="input"
                 type="email"
                 name="username"
-                onChange={this.handleChange}
+                onChange={handleUsernameChange}
               />
             </div>
             <div className="field">
@@ -56,11 +56,11 @@ const Login = ({ context }) => {
                 className="input"
                 type="password"
                 name="password"
-                onChange={this.handleChange}
+                onChange={handlePasswordChange}
               />
             </div>
-            {this.state.error && (
-              <div className="has-text-danger">{this.state.error}</div>
+            {error && (
+              <div className="has-text-danger">{error}</div>
             )}
             <div className="field is-clearfix">
               <button
