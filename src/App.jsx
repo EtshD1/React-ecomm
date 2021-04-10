@@ -1,5 +1,5 @@
 import React, { useRef, useState } from "react";
-import { Switch, Route, Link, BrowserRouter as Router } from "react-router-dom";
+import { Switch, Route, BrowserRouter as Router } from "react-router-dom";
 
 import AddProduct from './components/AddProduct';
 import Cart from './components/Cart';
@@ -27,7 +27,7 @@ const App = props => {
   }}>
     <Router ref={routerRef}>
       <div className="App">
-        <NavBar cartLength={Object.keys(cart).length} />
+        <NavBar cartLength={Object.keys(cart).length} menuDisplay={showMenu} toggleMenu={toggleMenu} logout={logout} />
         <Switch>
           <Route exact path="/" component={ProductList} />
           <Route exact path="/login" component={Login} />

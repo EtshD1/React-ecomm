@@ -1,6 +1,7 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
-const NavBar = ({ toggleMenu, logout, cartLength }) => <nav
+const NavBar = ({ toggleMenu, logout, cartLength, user, menuDisplay }) => <nav
   className="navbar container"
   role="navigation"
   aria-label="main navigation"
@@ -21,7 +22,7 @@ const NavBar = ({ toggleMenu, logout, cartLength }) => <nav
     </label>
   </div>
 
-  <div className={`navbar-menu ${showMenu ? "is-active" : ""}`}>
+  <div className={`navbar-menu ${menuDisplay ? "is-active" : ""}`}>
     <Link to="/products" className="navbar-item">
       Products
     </Link>
