@@ -69,4 +69,4 @@ const Login = () => {
   );
 }
 
-export default Login;
+export default withContext(Login);
