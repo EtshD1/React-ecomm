@@ -5,6 +5,15 @@ import withContext from "../withContext";
 const Login = ({ context }) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
+
+  const handlePasswordChange = e => {
+    setPassword(e.target.value);
+  }
+
+  const handleUsernameChange = e => {
+    setUsername(e.target.value);
+  }
 
   const login = (e) => {
     e.preventDefault();
