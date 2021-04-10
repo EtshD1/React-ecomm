@@ -50,11 +50,13 @@ const App = props => {
   };
 
   useEffect(() => {
-    let user = localStorage.getItem("user");
-    const products = await axios.get('http://localhost:3001/products');
-    user = user ? JSON.parse(user) : null;
-    setUser(user);
-    setProducts(products.data);
+    (async () => {
+      let user = localStorage.getItem("user");
+      const products = await axios.get('http://localhost:3001/products');
+      user = user ? JSON.parse(user) : null;
+      setUser(user);
+      setProducts(products.data);
+    })()
   }, [])
 
   return (<Context.Provider value={{
