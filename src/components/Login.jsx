@@ -19,12 +19,12 @@ const Login = ({ context }) => {
     e.preventDefault();
 
     if (!username || !password) {
-      return this.setState({ error: "Fill all fields!" });
+      return setError("Fill all fields!");
     }
     context.login(username, password)
       .then((loggedIn) => {
         if (!loggedIn) {
-          this.setState({ error: "Invalid Credentails" });
+          setError("Invalid Credentails");
         }
       })
   };
