@@ -23,7 +23,7 @@ const App = props => {
 
   const logout = e => {
     e.preventDefault();
-    this.setState({ user: null });
+    setUser(null);
     localStorage.removeItem("user");
   };
 
@@ -62,11 +62,12 @@ const App = props => {
   return (<Context.Provider value={{
     user,
     cart,
-    products
+    products,
+    login
   }}>
     <Router ref={routerRef}>
       <div className="App">
-        <NavBar cartLength={Object.keys(cart).length} menuDisplay={showMenu} toggleMenu={toggleMenu} logout={logout} />
+        <NavBar cartLength={Object.keys(cart).length} menuDisplay={showMenu} user={user} toggleMenu={toggleMenu} logout={logout} />
         <Switch>
           <Route exact path="/" component={ProductList} />
           <Route exact path="/login" component={Login} />
