@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Redirect } from "react-router-dom";
 import withContext from "../withContext";
 
-const Login = () => {
+const Login = ({ context }) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
