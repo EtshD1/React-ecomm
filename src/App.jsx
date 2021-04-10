@@ -4,6 +4,7 @@ import { Switch, Route, Link, BrowserRouter as Router } from "react-router-dom";
 import AddProduct from './components/AddProduct';
 import Cart from './components/Cart';
 import Login from './components/Login';
+import NavBar from "./components/Navbar";
 import ProductList from './components/ProductList';
 
 import Context from "./context";
@@ -26,6 +27,7 @@ const App = props => {
   }}>
     <Router ref={routerRef}>
       <div className="App">
+        <NavBar cartLength={Object.keys(cart).length} />
         <Switch>
           <Route exact path="/" component={ProductList} />
           <Route exact path="/login" component={Login} />
