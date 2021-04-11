@@ -20,7 +20,7 @@ const ProductList = ({ context }) => {
               <ProductItem
                 product={product}
                 key={index}
-                addToCart={props.context.addToCart}
+                addToCart={context.addToCart}
               />
             ))
           ) : (

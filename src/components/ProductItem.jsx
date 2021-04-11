@@ -1,6 +1,6 @@
 import React from "react";
 
-const ProductItem = ({ product }) => {
+const ProductItem = ({ product, addToCart }) => {
   return (
     <div className=" column is-half">
       <div className="box">
@@ -28,7 +28,7 @@ const ProductItem = ({ product }) => {
               <button
                 className="button is-small is-outlined is-primary is-pulled-right"
                 onClick={() =>
-                  props.addToCart({
+                  addToCart({
                     id: product.name,
                     product,
                     amount: 1
