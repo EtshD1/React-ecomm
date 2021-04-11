@@ -21,6 +21,13 @@ const App = props => {
 
   const toggleMenu = () => setShowMenu((prevState) => !prevState);
 
+  const addProduct = (product, callback) => {
+    let newProducts = products.slice();
+    newProducts.push(product);
+    setProducts(newProducts);
+  };
+
+
   const logout = e => {
     e.preventDefault();
     setUser(null);
