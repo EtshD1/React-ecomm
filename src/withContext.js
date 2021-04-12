@@ -6,7 +6,7 @@ const withContext = WrapperComponent => {
   const WithHOC = props => {
     return (
       <Context.Consumer>
-        {Context => <WrapperComponent {...props} context={context} />}
+        {Context => <WrapperComponent {...props} context={Context} />}
       </Context.Consumer>
     );
   };
