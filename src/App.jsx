@@ -32,6 +32,31 @@ const App = props => {
 
   const toggleMenu = () => setShowMenu((prevState) => !prevState);
 
+  checkout = () => {
+    if (!user) {
+      routerRef.current.history.push("/login");
+      return;
+    }
+
+    const newCart = copy(cart, {});
+
+    const newProducts = products.map(p => {
+      if (newCart[p.name]) {
+        p.stock = p.stock - newCart[p.name].amount;
+
+        axios.put(
+          `http://localhost:3001/products/${p.id}`,
+          { ...p },
+        )
+      }
+      return p;
+    });
+
+    setProducts(newProducts);
+    clearCart();
+  };
+
+
   const addToCart = cartItem => {
     const newCart = copy(cart, {});
     if (newCart[cartItem.id]) {
