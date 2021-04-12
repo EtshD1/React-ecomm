@@ -12,17 +12,6 @@ import ProductList from './components/ProductList';
 
 import Context from "./context";
 
-function copy(MainObj, ObjCopy) {
-  for (let key in MainObj) {
-    if (typeof MainObj[key] === 'object') {
-      copy(MainObj[key], ObjCopy)
-    } else {
-      ObjCopy[key] = MainObj[key];
-    }
-  }
-  return ObjCopy;
-}
-
 const App = props => {
   const [user, setUser] = useState(null);
   const [cart, setCart] = useState({});
@@ -32,13 +21,16 @@ const App = props => {
 
   const toggleMenu = () => setShowMenu((prevState) => !prevState);
 
-  checkout = () => {
+  const checkout = () => {
     if (!user) {
       routerRef.current.history.push("/login");
       return;
     }
 
-    const newCart = copy(cart, {});
+    const newCart = {};
+    for (let key in cart) {
+      newCart[key] = cart[key];
+    }
 
     const newProducts = products.map(p => {
       if (newCart[p.name]) {
@@ -58,7 +50,10 @@ const App = props => {
 
 
   const addToCart = cartItem => {
-    const newCart = copy(cart, {});
+    const newCart = {};
+    for (let key in cart) {
+      newCart[key] = cart[key];
+    }
     if (newCart[cartItem.id]) {
       newCart[cartItem.id].amount += cartItem.amount;
     } else {
@@ -72,10 +67,13 @@ const App = props => {
   };
 
   const removeFromCart = cartItemId => {
-    let tempCart = copy(cart, {});
-    delete tempCart[cartItemId];
+    const newCart = {};
+    for (let key in cart) {
+      newCart[key] = cart[key];
+    }
+    delete newCart[cartItemId];
     localStorage.setItem("cart", JSON.stringify(cart));
-    setCart(tempCart);
+    setCart(newCart);
   };
 
   const clearCart = () => {
@@ -136,7 +134,10 @@ const App = props => {
     products,
     login,
     addProduct,
-    addToCart
+    addToCart,
+    removeFromCart,
+    checkout,
+    clearCart
   }}>
     <Router ref={routerRef}>
       <div className="App">

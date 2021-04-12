@@ -1,8 +1,9 @@
 import React from "react";
 
-const CartItem = ({ cartItem, cartKey, removeFromCart }) => {
-  const { product, amount } = cartItem;
+const CartItem = props => {
+  const { cartItem, cartKey } = props;
 
+  const { product, amount } = cartItem;
   return (
     <div className=" column is-half">
       <div className="box">
@@ -25,7 +26,7 @@ const CartItem = ({ cartItem, cartKey, removeFromCart }) => {
           </div>
           <div
             className="media-right"
-            onClick={() => removeFromCart(cartKey)}
+            onClick={() => props.removeFromCart(cartKey)}
           >
             <span className="delete is-large"></span>
           </div>
