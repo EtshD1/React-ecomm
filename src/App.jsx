@@ -46,6 +46,19 @@ const App = props => {
     setCart(newCart);
   };
 
+  const removeFromCart = cartItemId => {
+    let tempCart = copy(cart, {});
+    delete tempCart[cartItemId];
+    localStorage.setItem("cart", JSON.stringify(cart));
+    setCart(tempCart);
+  };
+
+  const clearCart = () => {
+    localStorage.removeItem("cart");
+    setCart({});
+  };
+
+
 
   const addProduct = (product, callback) => {
     let newProducts = products.slice();
