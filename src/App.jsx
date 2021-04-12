@@ -12,6 +12,17 @@ import ProductList from './components/ProductList';
 
 import Context from "./context";
 
+function copy(MainObj, ObjCopy) {
+  for (let key in MainObj) {
+    if (typeof MainObj[key] === 'object') {
+      copy(MainObj[key], ObjCopy)
+    } else {
+      ObjCopy[key] = MainObj[key];
+    }
+  }
+  return ObjCopy;
+}
+
 const App = props => {
   const [user, setUser] = useState(null);
   const [cart, setCart] = useState({});
@@ -20,6 +31,21 @@ const App = props => {
   const routerRef = useRef();
 
   const toggleMenu = () => setShowMenu((prevState) => !prevState);
+
+  const addToCart = cartItem => {
+    const newCart = copy(cart, {});
+    if (newCart[cartItem.id]) {
+      newCart[cartItem.id].amount += cartItem.amount;
+    } else {
+      newCart[cartItem.id] = cartItem;
+    }
+    if (newCart[cartItem.id].amount > newCart[cartItem.id].product.stock) {
+      newCart[cartItem.id].amount = newCart[cartItem.id].product.stock;
+    }
+    localStorage.setItem("cart", JSON.stringify(cart));
+    setCart(newCart);
+  };
+
 
   const addProduct = (product, callback) => {
     let newProducts = products.slice();
@@ -70,7 +96,9 @@ const App = props => {
     user,
     cart,
     products,
-    login
+    login,
+    addProduct,
+    addToCart
   }}>
     <Router ref={routerRef}>
       <div className="App">
